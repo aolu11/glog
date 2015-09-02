@@ -639,10 +639,7 @@ func (l *loggingT) print(s severity, args ...interface{}) {
 
 func (l *loggingT) printDepth(s severity, depth int, args ...interface{}) {
 	buf, file, line := l.header(s, depth)
-	fmt.Fprint(buf, args...)
-	if buf.Bytes()[buf.Len()-1] != '\n' {
-		buf.WriteByte('\n')
-	}
+	fmt.Fprintln(buf, args...)
 	l.output(s, buf, file, line, false)
 }
 
